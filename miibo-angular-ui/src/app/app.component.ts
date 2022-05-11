@@ -7,13 +7,13 @@ import { CatfactsService } from './shared/catfacts.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  catfact: number = 0;
+  catfact: string = '';
 
   constructor(private catFactService: CatfactsService) {}
 
   ngOnInit(): void {
-    setTimeout(() => {
-      this.catfact = 487698129412;
-    }, 2000);
+    this.catFactService
+      .getCatFact()
+      .subscribe((fact) => (this.catfact = fact.fact));
   }
 }
